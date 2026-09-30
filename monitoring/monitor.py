@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import joblib
 
@@ -10,9 +11,13 @@ from sklearn.metrics import (
     roc_auc_score
 )
 
+# Project root directory
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 # File paths
-DATA_PATH = "data/loan_df_train.csv"
-MODEL_PATH = "models/best_model.pkl"
+DATA_PATH = os.path.join(BASE_DIR, "data", "loan_df_train.csv")
+MODEL_PATH = os.path.join(BASE_DIR, "models", "best_model.pkl")
+RESULT_PATH = os.path.join(BASE_DIR, "monitoring", "monitoring_result.csv")
 
 # Performance thresholds
 MIN_F1 = 0.70
@@ -67,7 +72,7 @@ print(f"ROC-AUC   : {roc_auc:.4f}")
 # Check whether retraining is required
 if f1 < MIN_F1 or roc_auc < MIN_ROC_AUC:
     retraining_required = True
-    print("\n⚠️ Retraining required.")
+    print("\n⚠ Retraining required.")
 else:
     retraining_required = False
     print("\n✓ Model performance is acceptable.")
@@ -83,7 +88,7 @@ monitoring_result = pd.DataFrame([{
 }])
 
 monitoring_result.to_csv(
-    "monitoring_result.csv",
+    RESULT_PATH,
     index=False
 )
 
