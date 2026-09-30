@@ -27,3 +27,6 @@ monitoring/*.csv
 
 # Temporary files
 *.tmp
+
+# Local MLflow artifacts
+src/mlruns/
