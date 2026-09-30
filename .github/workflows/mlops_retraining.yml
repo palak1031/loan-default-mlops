@@ -1,0 +1,27 @@
+name: Loan Model Automatic Retraining
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 12 * * *"
+
+jobs:
+  monitor-and-retrain:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: |
+          pip install pandas numpy scikit-learn mlflow joblib
+
+      - name: Run monitoring and retraining
+        run: |
+          python src/retrain.py

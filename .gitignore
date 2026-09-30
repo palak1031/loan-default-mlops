@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# MLflow local database
+mlflow.db
+mlflow.db-journal
+
+# Local DVC storage
+dvc_storage/
+
+# Trained model files
+models/*.pkl
+models/*.joblib
+models/*.keras
+
+# Monitoring generated files
+monitoring/*.csv
+
+# Local logs
+*.log
+
+# Environment files
+.env
+
+# Temporary files
+*.tmp
