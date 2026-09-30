@@ -1,1 +1,2 @@
 data/loan_df_train.csv filter=lfs diff=lfs merge=lfs -text
+models/best_model.pkl filter=lfs diff=lfs merge=lfs -text
